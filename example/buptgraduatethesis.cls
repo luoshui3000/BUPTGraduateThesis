@@ -1087,8 +1087,6 @@
   \bupt@makeabstract
   \let\@tabular\bupt@tabular%
   \tableofcontents
-  \listoftables
-  \listoffigures
 }
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
