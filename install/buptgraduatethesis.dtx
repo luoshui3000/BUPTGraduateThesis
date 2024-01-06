@@ -408,6 +408,7 @@
 %   classlevel=classified,%
 %   mathfont=mathptmx,%
 %   dedication=false,%
+%   committee=true,%
 %   chapbib=true,%
 %   finish=print,%
 %   driver=xetex]{buptgraduatethesis}
@@ -465,6 +466,17 @@
 % \end{description}
 % \changes{v5.0}{2014/04/14}{增加使用 mathptmx 字体时提示找不到 rsfs10 的解决方案}
 % 注意：使用默认的 mathptmx 字体时，可能会提示找不到 rsfs10 的错误，此时需要运行 mf rsfs10 命令，并且清除辅助文件之后再次编译，即可解决此问题。
+% 
+% \begin{function}{答辩委员会名单页}
+%   \begin{syntax}
+%     committee=\meta{\TFF}
+%   \end{syntax}
+% \end{function}
+% |committee|用于指定是否在扉页后添加答辩委员会名单页，如果有，则答辩委员会名单页的内容在 committee.tex 中描述。
+% \begin{description}
+% \item[true] 有答辩委员会名单页；
+% \item[false] 无答辩委员会名单页。
+% \end{description}
 % 
 % \begin{function}{献词页}
 %   \begin{syntax}
@@ -586,18 +598,19 @@
 %     |\cmajor|\marg{专业名称}  |\emajor|\marg{专业英文名称}
 %   \end{syntax}
 % \end{function}
-% 
+%
+% \begin{function}{培养方式}
+%   \begin{syntax}
+%     |\ctrainingmode|\marg{培养方式} |\etrainingmode|\marg{Training Mode}
+%   \end{syntax}
+% \end{function} 
+%
 % \begin{function}{导师名称}
 %   \begin{syntax}
 %     |\csupervisor|\marg{导师名称} |\esupervisor|\marg{Supervisor Name}
 %   \end{syntax}
 % \end{function}
 % 
-% \begin{function}{论文提交日期}
-%   \begin{syntax}
-%     |\cdate|\marg{论文提交日期} |\edate|\marg{论文提交日期}
-%   \end{syntax}
-% \end{function}
 % 
 % \begin{function}{论文摘要}
 %   \begin{syntax}
@@ -611,12 +624,6 @@
 %   \end{syntax}
 % \end{function}
 % 关键词之间使用 |\kwsep| 分隔，根据格式要求，使用空格隔开。
-% 
-% \begin{function}{保密年限}
-%   \begin{syntax}
-%     |\classdur|\marg{保密年限}
-%   \end{syntax}
-% \end{function}
 % 
 % \begin{function}{自定义密级}
 %   \begin{syntax}
@@ -1082,6 +1089,11 @@
 \define@boolkey[bupt]{class}{dedication}[false]{\relax}
 %    \end{macrocode}
 %
+% 答辩委员会名单页选项
+%    \begin{macrocode}
+\define@boolkey[bupt]{class}{committee}[true]{\relax}
+%    \end{macrocode}
+%
 % 数学字体选项
 %    \begin{macrocode}
 \define@choicekey*[bupt]{class}{mathfont}[\bupt@tempa\bupt@mathfont]{%
@@ -1115,6 +1127,7 @@
   degree=doctor,%
   classlevel=open,%
   dedication=false,%
+  committee=true,%
   mathfont=mathptmx,%
   chapbib=false,%
   finish=print,%
@@ -1858,53 +1871,53 @@
 }
 %% ps@bupt@headings 有页眉有页脚
 \def\ps@bupt@headings{%
-  \def\@oddhead{%
-    \vbox to\headheight{%
-      \hb@xt@\textwidth{%
-        \xiaowu\song\hfill\leftmark%
-      }%
-      \vskip3pt\hbox{%
-        \vrule width\textwidth height0.4pt depth0pt
-      }
-    }
-  }
-  \def\@evenhead{%
-    \vbox to\headheight{%
-      \hb@xt@\textwidth{%
-        \xiaowu\song\bupt@page@head\hfill
-      }%
-      \vskip3pt\hbox{%
-        \vrule width\textwidth height0.4pt depth0pt
-      }
-    }
-  }
-  \def\@oddfoot{\hfil\wuhao\thepage\hfil}
-  \let\@evenfoot=\@oddfoot
+	\def\@oddhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\leftmark\hfil%
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@evenhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@page@head\hfil
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@oddfoot{\hfil\wuhao\thepage\hfil}
+	\let\@evenfoot=\@oddfoot
 }
 %% ps@bupt@pubheadings 有页眉有页脚（发表文章）
 \def\ps@bupt@pubheadings{%
-  \def\@oddhead{%
-    \vbox to\headheight{%
-      \hb@xt@\textwidth{%
-        \xiaowu\song\hfill\bupt@label@tableofpublications%
-      }%
-      \vskip3pt\hbox{%
-        \vrule width\textwidth height0.4pt depth0pt
-      }
-    }
-  }
-  \def\@evenhead{%
-    \vbox to\headheight{%
-      \hb@xt@\textwidth{%
-        \xiaowu\song\bupt@page@head\hfill
-      }%
-      \vskip3pt\hbox{%
-        \vrule width\textwidth height0.4pt depth0pt
-      }
-    }
-  }
-  \def\@oddfoot{\hfil\wuhao\thepage\hfil}
-  \let\@evenfoot=\@oddfoot
+	\def\@oddhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@label@tableofpublications\hfil%
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@evenhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@page@head\hfil
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@oddfoot{\hfil\wuhao\thepage\hfil}
+	\let\@evenfoot=\@oddfoot
 }
 %</cls>
 %    \end{macrocode}
@@ -1940,10 +1953,10 @@
 \bupt@def@metadata{classnumber}
 \bupt@def@metadata{udc}
 \bupt@def@metadata{schoolserial}
+\bupt@def@metadata{ctrainingmode}
 \bupt@def@metadata{csupervisor}
 \bupt@def@metadata{cassosupervisor}
 \bupt@def@metadata{ccosupervisor}
-\bupt@def@metadata{cdate}
 \bupt@def@metadata{startdate}
 \bupt@def@metadata{finishdate}
 \bupt@def@metadata[long]{cabstract}
@@ -1953,13 +1966,12 @@
 \bupt@def@metadata{edepartment}
 \bupt@def@metadata{emajor}
 \bupt@def@metadata{eauthor}
+\bupt@def@metadata{etrainingmode}
 \bupt@def@metadata{esupervisor}
 \bupt@def@metadata{eassosupervisor}
 \bupt@def@metadata{ecosupervisor}
-\bupt@def@metadata{edate}
 \bupt@def@metadata[long]{eabstract}
 \bupt@def@metadata{ekeywords}
-\bupt@def@metadata{classdur}
 \bupt@def@metadata{hiddenmark}
 \bupt@def@metadata{customclasslevel}
 %</cls>
@@ -1976,15 +1988,15 @@
   \def\bupt@label@emajor{Subject}
   \or
   \def\bupt@page@head{北京邮电大学工学硕士学位论文}
-  \def\bupt@label@covertitle{硕士学位论文}
+  \def\bupt@label@covertitle{硕士学位论文（学术学位）}
   \def\bupt@label@ecovertitle{Thesis for Master Degree}
-  \def\bupt@label@cmajor{专\hspace{2em}业}
+  \def\bupt@label@cmajor{学科专业}
   \def\bupt@label@emajor{Subject}
   \or
   \def\bupt@page@head{北京邮电大学工程硕士学位论文}
-  \def\bupt@label@covertitle{硕士学位论文}
+  \def\bupt@label@covertitle{硕士学位论文（专业学位）}
   \def\bupt@label@ecovertitle{Thesis for Master Degree}
-  \def\bupt@label@cmajor{专\hspace{2em}业}
+  \def\bupt@label@cmajor{学科专业}
   \def\bupt@label@emajor{Subject}
   \or
   \def\bupt@page@head{北京邮电大学博士后研究工作报告}
@@ -2008,6 +2020,8 @@
   \def\bupt@label@eauthor{Candidate}
   \def\bupt@label@csupervisor{导\hspace{2em}师}
   \def\bupt@label@esupervisor{Supervisor}
+  \def\bupt@label@ctrainingmode{培养方式}
+  \def\bupt@label@etrainingmode{Training Mode}
   \def\bupt@label@cdepartment{学\hspace{2em}院}
   \def\bupt@label@edepartment{Institute}
   \def\bupt@label@studentid{学\hspace{2em}号}
@@ -2017,14 +2031,11 @@
 \fi
 \def\bupt@label@ctitle{题目}
 \def\bupt@label@etitle{Title}
-\def\bupt@label@classdur{保密期限}
-\def\bupt@label@eclassdur{Confidentiality Period}
 \def\bupt@label@cschoolname{北京邮电大学}
 \def\bupt@label@eschoolname{Beijing University of Posts and Telecommunications}
 \def\bupt@title@sep{：}
 \def\bupt@title@esep{:}
-\cdate{\the\year 年\the\month 月\the\day 日}
-\edate{\today}
+
 
 %</cfg>
 %    \end{macrocode}
@@ -2047,16 +2058,22 @@
 %<*cfg>
 \ifcase\bupt@classlevel\relax
   \def\bupt@meta@classlevel{公开}
+  \def\bupt@meta@eclasslevel{Open}
 \or
   \def\bupt@meta@classlevel{限制}
+  \def\bupt@meta@eclasslevel{Control}
 \or
   \def\bupt@meta@classlevel{秘密}
+  \def\bupt@meta@eclasslevel{Confidential}
 \or
   \def\bupt@meta@classlevel{机密}
+  \def\bupt@meta@eclasslevel{Classified}
 \or
   \def\bupt@meta@classlevel{绝密}
+  \def\bupt@meta@eclasslevel{Topsecret}
 \or
   \def\bupt@meta@classlevel\bupt@meta@customclasslevel
+  \def\bupt@meta@eclasslevel\bupt@meta@customclasslevel
 \fi
 %</cfg>
 %    \end{macrocode}
@@ -2116,7 +2133,6 @@
   \begin{minipage}[t]{\textwidth}
     \centering
     \sihao[2.0]{\ziju{0.5em}\bupt@label@cschoolname}\par
-    \bupt@meta@cdate
   \end{minipage}
   \normalfont
 }
@@ -2124,15 +2140,13 @@
 \newcommand{\bupt@front@cover}{%
   \asong\bfseries
   \vspace*{-1.15cm}
-  \begin{minipage}[t]{\textwidth}%右上角密级、保密期限
+  \begin{minipage}[t]{\textwidth}%右上角密级
     \sihao
-    \hspace*{76.6mm}
+    \raggedleft
     \ifnum\bupt@classlevel=0
-      \bupt@label@classlevel\bupt@title@sep
-      \hspace{4em}\bupt@label@classdur\bupt@title@sep
+      \bupt@label@classlevel\bupt@title@sep\bupt@meta@classlevel
     \else
       \bupt@label@classlevel\bupt@title@sep\bupt@meta@classlevel
-      \hspace{2em}\bupt@label@classdur\bupt@title@sep\bupt@meta@classdur
     \fi
   \end{minipage}\\[1.71cm]
   \begin{minipage}[t]{\textwidth}%北京邮电大学、硕士（博士）学位论文、logo
@@ -2183,16 +2197,14 @@
       [-3pt] \cline{2-2} \\
       \bupt@label@cmajor\bupt@title@sep & {\hfill\bupt@meta@cmajor\hfill} \\
       [-3pt] \cline{2-2} \\
+      \bupt@label@ctrainingmode\bupt@title@sep & {\hfill\bupt@hide{\bupt@meta@ctrainingmode}\hfill} \\
+      [-3pt] \cline{2-2} \\
       \bupt@label@csupervisor\bupt@title@sep & {\hfill\bupt@hide{\bupt@meta@csupervisor}\hfill} \\
       [-3pt] \cline{2-2} \\
       \bupt@label@cdepartment\bupt@title@sep & {\hfill\bupt@meta@cdepartment\hfill} \\
       [-3pt] \cline{2-2} \\
     \end{tabular}
   \end{minipage}\\[0.7cm]
-  \begin{minipage}[t]{\textwidth}%日期
-    \centering
-    {\sihao[1.0] \asong \bupt@meta@cdate}
-  \end{minipage}
   \normalfont
 }
 \fi
@@ -2209,15 +2221,13 @@
   \else
   \asong\bfseries
   \vspace*{-1.15cm}
-  \begin{minipage}[t]{\textwidth}%右上角密级、保密期限
+  \begin{minipage}[t]{\textwidth}%右上角密级
     \sihao
-    \hspace*{40.6mm}
+    \raggedleft
     \ifnum\bupt@classlevel=0
-      \bupt@label@eclasslevel\bupt@title@sep
-      \hspace{4em}\bupt@label@eclassdur\bupt@title@sep
+      \bupt@label@eclasslevel\bupt@title@sep\bupt@meta@eclasslevel
     \else
-      \bupt@label@eclasslevel\bupt@title@sep\bupt@meta@classlevel
-      \hspace{2em}\bupt@label@eclassdur\bupt@title@sep\bupt@meta@classdur
+      \bupt@label@eclasslevel\bupt@title@sep\bupt@meta@eclasslevel
     \fi
   \end{minipage}\\[1.71cm]
   \begin{center}
@@ -2272,17 +2282,14 @@
         [-3pt] \cline{2-2} \\
         \bupt@label@emajor\bupt@title@esep & {\hfill\bupt@meta@emajor\hfill} \\
         [-3pt] \cline{2-2} \\
+        \bupt@label@etrainingmode\bupt@title@esep & {\hfill\bupt@hide{\bupt@meta@etrainingmode}\hfill} \\
+        [-3pt] \cline{2-2} \\
         \bupt@label@esupervisor\bupt@title@esep & {\hfill\bupt@hide{\bupt@meta@esupervisor}\hfill} \\
         [-3pt] \cline{2-2} \\
         \bupt@label@edepartment\bupt@title@esep & {\hfill\bupt@meta@edepartment\hfill} \\
         [-3pt] \cline{2-2} \\
       \end{tabular}
     \end{minipage}\\[1cm]
-    \begin{minipage}[t]{\textwidth}%日期
-      \begin{flushright}
-        {\sihao[1.0] \asong \bupt@meta@edate}
-      \end{flushright}
-    \end{minipage}
     \normalfont
     \fi
   \end{center}  
@@ -2317,6 +2324,7 @@
           \bupt@label@cauthor\bupt@title@sep & {\bupt@hide{\bupt@meta@cauthor}\hfill} \\
           \bupt@label@cdepartment\bupt@title@sep & {\bupt@meta@cdepartment\hfill} \\
           \bupt@label@cmajor\bupt@title@sep & {\bupt@meta@cmajor\hfill} \\
+          \bupt@label@ctrainingmode\bupt@title@sep & {\bupt@hide{\bupt@meta@ctrainingmode}\hfill} \\
           \bupt@label@csupervisor\bupt@title@sep & {\bupt@hide{\bupt@meta@csupervisor}\hfill} \\
         \end{tabular}
       \end{minipage}\\[3cm]
@@ -2340,6 +2348,23 @@
 }
 \newcommand{\bupt@back@cover}{%
 }
+  %</cls>
+  %    \end{macrocode}
+  %
+  % 答辩委员会名单页
+  %    \begin{macrocode}
+  %<*cls>
+\def\bupt@committee@title{答辩委员会名单}
+\newcommand{\bupt@committee}{%
+  \cleardoublepage
+  \begin{center}
+    \sanhao\hei\bupt@committee@title
+  \end{center}
+  \input{committee}
+  
+}
+
+
 %</cls>
 %    \end{macrocode}
 %
@@ -2355,7 +2380,7 @@
 }
 \def\bupt@authorization@title{关于论文使用授权的说明}
 \long\def\bupt@authorization@body{%
-  本人完全了解并同意北京邮电大学有关保留、使用学位论文的规定，即：北京邮电大学拥有以下关于学位论文的无偿使用权，具体包括：学校有权保留并向国家有关部门或机构送交论文，有权允许学位论文被查阅和借阅；%
+  本人完全了解并同意北京邮电大学有关保留、使用学位论文的规定，即：北京邮电大学拥有以下关于学位论文的无偿使用权，具体包括：学校有权保留并向国家有关部门或机构送交学位论文，有权允许学位论文被查阅和借阅；%
   学校可以公布学位论文的全部或部分内容，有权允许采用影印、缩印或其它复制手段保存、汇编学位论文，将学位论文的全部或部分内容编入有关数据库进行检索。%
   （保密的学位论文在解密后遵守此规定）%
 } 
@@ -2444,6 +2469,9 @@
     \else
       \ifnum\bupt@finish=2
       \else
+      \ifbupt@class@committee
+      \bupt@committee
+      \fi
       \bupt@makedeclauth
       \fi
     \fi
@@ -2463,7 +2491,7 @@
 \newcommand{\bupt@makeabstract}{%
   \pagestyle{bupt@plain}
   \pagenumbering{Roman}
-  \bupt@chapter*[]%
+  \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
   [\centering\sanhao\bupt@meta@ctitle]
@@ -2477,7 +2505,7 @@
     \setbox0=\hbox{{\hei \bupt@label@ckeywords}}
     \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
   }
-  \bupt@chapter*[]%
+  \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
   [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
@@ -2630,7 +2658,7 @@
 %
 % 攻读学位期间发表的学术论文目录
 %    \begin{macrocode}
-%<cfg>\def\bupt@label@tableofpublications{攻读学位期间发表的学术论文目录}
+%<cfg>\def\bupt@label@tableofpublications{攻读学位期间取得的“创新成果”目录}
 %<*cls>
 \def\newcite#1#2{%
   \expandafter\gdef\csname bupt@cite@#1\endcsname{#2}
@@ -4141,11 +4169,12 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
 % \subsection{bare_thesis.tex}
 %<*bare-thesis>
 \documentclass[%
-  degree=master,%
+  degree=doctor,%
   classlevel=open,%
   mathfont=mathptmx,%
   dedication=false,%
-  chapbib=true,%
+  committee=true,%
+  chapbib=false,%
   finish=print,%
   driver=xetex]{buptgraduatethesis}
 
@@ -4339,8 +4368,6 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
 % 
 % \subsection{metadata.tex}
 %<*metadata>
-%% 涉密论文保密年限
-\classdur{三年}
 
 %% 学号
 \studentid{2011000000}             
@@ -4379,13 +4406,14 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
 %% 博士后研究工作期满时间
 \finishdate{2016年4月2日}
 
+%% 培养方式：填写内容应为“全日制”或“非全日制”。
+\ctrainingmode{全日制 或 非全日制}
+\etrainingmode{Part-Time or Full-Time}
+
 %% 你导师的姓名
 \csupervisor{导师姓名}
 \esupervisor{Supervisor Name}
 
-%% 日期自动生成，也可以取消注释下面一行，自行指定日期
-% \cdate{2013年12月25日}
-% \edate{Dec 25 2013}
 
 %% 中文摘要
 \cabstract{%
@@ -4711,6 +4739,35 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
   集合 $\mathcal{A}$ 与集合 $\mathcal{B}$ 的 Cartesian 积，即 $\mathcal{A}\times\mathcal{B}=\{(a,b):a\in\mathcal{A},b\in\mathcal{B}\}$
 \end{listofnotations}
 %</notations>
+% 
+% \subsection{committee.tex}
+%<*committee>
+\begin{table*}[h]
+  \centering
+  \caption*{}
+  \label{tab:committee}
+  \renewcommand\arraystretch{1.5}
+  \begin{tabular}{|>{\centering\arraybackslash}m{2cm} | >{\centering\arraybackslash}m{2cm} | >{\centering\arraybackslash}m{2cm} | >{\centering\arraybackslash}m{6cm}|}
+    \hline
+    职务     & 姓 \hspace{1em} 名               & 职 \hspace{1em} 称 & 工\hspace{1em} 作\hspace{1em} 单\hspace{1em} 位 \\
+    \hline
+    主席     &                                &       &             \\
+    \hline
+    委员     &                                &       &             \\
+    \hline
+    委员     &                                &       &             \\
+    \hline
+    委员     &                                &       &             \\
+    \hline
+    委员     &                                &       &             \\
+    \hline
+    秘书     &                                &       &             \\
+    \hline
+    答辩日期 & \multicolumn{3}{|c|}{2023.05.13}                       \\
+    \hline
+  \end{tabular}
+\end{table*}
+%</committee>
 % 
 % \subsection{app_lhospital.tex}
 %<*app-lhospital>

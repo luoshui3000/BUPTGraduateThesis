@@ -1,0 +1,33 @@
+%%
+%% This is file `example/pubs.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% install/buptgraduatethesis.dtx  (with options: `pubs')
+%% 
+%% This file is a part of the example of BUPTGraduateThesis.
+%% 
+
+%% 发表论文列表
+
+%% 攻读学位期间发表论文列表用 tableofpublications 环境产生。需要
+%% 在 bare_thesis.tex 的导言区用 \newcite{<name>}{<caption>} 声明不同类
+%% 型的论文，具体见导言区说明。
+%% 根据各类论文发表数量设置\setbiblabelwidth{<num>}，用于控制发表论文序号的对齐位置。
+%% 例如：发表conf类论文数量为个位数，则<num>=1；发表jrnl类论文数量为两位数，则<num>=10；
+\begin{tableofpublications}
+  \thispagestyle{bupt@pubheadings}%
+  \setcounter{NAT@ctr}{0}
+  \setbiblabelwidth{1}
+  \bibliographyjrnl{pubs}
+  \nocitejrnl{paper1}
+
+  \setbiblabelwidth{1}
+  \bibliographyconf{pubs}
+  \nociteconf{paper2}
+
+  \setbiblabelwidth{1}
+  \bibliographypatent{pubs}
+  \nocitepatent{patent1}
+\end{tableofpublications}

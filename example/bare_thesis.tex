@@ -1,0 +1,89 @@
+%%
+%% This is file `example/bare_thesis.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% install/buptgraduatethesis.dtx  (with options: `bare-thesis')
+%% 
+%% This file is a part of the example of BUPTGraduateThesis.
+%% 
+
+\documentclass[%
+  degree=doctor,%
+  classlevel=open,%
+  mathfont=mathptmx,%
+  dedication=false,%
+  committee=true,%
+  chapbib=false,%
+  finish=print,%
+  driver=xetex]{buptgraduatethesis}
+
+%% 自定义导言区
+%% 在这里添加你需要的宏包、自定义命令、环境等
+%% \usepackage{...}
+%% \DeclareMathOperator{\CT}{H}
+%% \DeclareMathOperator{\Cov}{Cov}
+\def\BUPTThesis{\textsc{BUPT}\-\textsc{Thesis}}
+
+%% 在这里添加图片文件搜索目录
+\graphicspath{{../}}
+%% 自定义导言区结束
+
+%% 加载缩略语定义
+\input{metadata}
+
+\loadglsentries{acronyms}
+
+%% 攻读学位期间发表论文
+%% 用 \newcite{<suffix>}{<caption>} 声明不同的论文类型(例如: 期刊论文、会议论文等)。每一个类型的对应的 .bib 文件用 \bibliography<suffix> 命令加载，用 \nocite<suffix> 命令引用。具体请参考 pubs.tex 中的示例
+\newcite{jrnl}{期刊论文}
+\newcite{conf}{会议论文}
+\newcite{patent}{专利}
+
+\begin{document}
+%% 声明前置部分
+\makefrontmatter
+
+%% 生成主要符号对照表
+\input{notations}
+
+%% 主体部分
+\mainmatter
+%% 用\include{}命令引用各章.tex文件
+\include{ch_intro}
+\include{ch_concln}
+
+\ifx\usechapbib\undefined
+\bibliographystyle{buptgraduatethesis}
+\bibliography{bare_thesis}
+\fi
+
+%% 附录部分
+
+%% 如果有两个或两个以上的附录, 使用appendix环境
+\begin{appendix}
+  \input{app_lhospital}
+  % 自动抽取生成缩略语表作为附录A
+  \tableofacronyms
+  % 用\input{}添加其他的附录
+  % \input{...}
+\end{appendix}
+
+%% 如果只有一个附录, 使用appendix*环境
+%% \begin{appendix*}
+%%   % 自动抽取生成缩略语表作为附录A
+%%   % \tableofacronyms
+%% \end{appendix*}
+
+\backmatter
+%% 致谢
+\ifx\ispeerreview\undefined
+\input{ackgmt}
+\fi
+
+%% 在读期间论文发表情况
+\input{pubs}
+
+\newpage
+\end{document}

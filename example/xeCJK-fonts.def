@@ -1,0 +1,39 @@
+%%
+%% This is file `xeCJK-fonts.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% install/buptgraduatethesis.dtx  (with options: `def')
+%% 
+%% Copyright (C) 2013-2024 by Xianling Wang <rioxwang@foxmail.com>
+%% 
+%% This file is part of the BUPTGraduateThesis project.
+%% 
+
+  \setCJKmainfont[BoldFont={SimHei}, ItalicFont={KaiTi}]{SimSun}
+  \setCJKsansfont{SimHei}
+  \setCJKmonofont{KaiTi}
+  \setCJKfamilyfont{song}{SimSun}
+  \setCJKfamilyfont{hei}{SimHei}
+  \setCJKfamilyfont{fs}{FangSong}
+  \setCJKfamilyfont{kai}{KaiTi}
+  \setCJKfamilyfont{li}{LiSu}
+  \setCJKfamilyfont{you}{YouYuan}
+  \setCJKfamilyfont{asong}{Adobe Song Std}
+  \setCJKfamilyfont{ahei}{Adobe Heiti Std}
+  \setmainfont{Times New Roman}
+  \setsansfont{Arial}
+  \setmonofont{Courier New}
+  \newcommand{\song}{\CJKfamily{song}}    % 中易宋体
+  \def\songti{\song}
+  \newcommand{\hei}{\CJKfamily{hei}}      % 中易黑体
+  \def\heiti{\hei}
+  \newcommand{\fs}{\CJKfamily{fs}}        % 中易仿宋体
+  \def\fangsong{\fs}
+  \newcommand{\kai}{\CJKfamily{kai}}      % 中易楷体
+  \def\kaishu{\kai}
+  \newcommand{\asong}{\CJKfamily{asong}}  % Adobe宋体
+  \def\asongti{\asong}
+  \newcommand{\ahei}{\CJKfamily{ahei}}    % Adobe黑体
+  \def\aheiti{\ahei}
