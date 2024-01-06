@@ -1,3 +1,131 @@
+Update
+==================
+根据[北京邮电大学研究生学位论文写作与制作规范-20240102版本](https://grs.bupt.edu.cn/info/1035/3071.htm)对install/buptgraduatethesis.dtx进行了如下修改
+
+#### 新增文件说明
+- example 里的是根据新版要求修改install/buptgraduatethesis.dtx文件，并编译后生成的样例文件
+- fonts 里的是所需的字体库
+
+#### 页眉居中
+``` latex
+%% ps@bupt@headings 有页眉有页脚
+\def\ps@bupt@headings{%
+	\def\@oddhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\leftmark\hfil%
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@evenhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@page@head\hfil
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@oddfoot{\hfil\wuhao\thepage\hfil}
+	\let\@evenfoot=\@oddfoot
+}
+%% ps@bupt@pubheadings 有页眉有页脚（发表文章）
+\def\ps@bupt@pubheadings{%
+	\def\@oddhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@label@tableofpublications\hfil%
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@evenhead{%
+		\vbox to\headheight{%
+			\hb@xt@\textwidth{%
+				\xiaowu\song\hfil\bupt@page@head\hfil
+			}%
+			\vskip3pt\hbox{%
+				\vrule width\textwidth height0.4pt depth0pt
+			}
+		}
+	}
+	\def\@oddfoot{\hfil\wuhao\thepage\hfil}
+	\let\@evenfoot=\@oddfoot
+}
+```
+
+#### 目录显示摘要
+``` latex
+%% 生成中英文摘要页
+\newcommand{\bupt@makeabstract}{%
+  \pagestyle{bupt@plain}
+  \pagenumbering{Roman}
+  \bupt@chapter*[\bupt@label@cabstract]%
+  {\bupt@label@cabstract}%
+  [\xiaosan\hei]%
+  [\centering\sanhao\bupt@meta@ctitle]
+  {
+    \sihao[1.6]
+    \par{
+      \CJKindent
+      \song\bupt@meta@cabstract
+    }\par
+    \vspace{12bp}
+    \setbox0=\hbox{{\hei \bupt@label@ckeywords}}
+    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
+  }
+  \bupt@chapter*[\bupt@label@eabstract]%
+  {\bupt@label@eabstract} % no tocline
+  [\xiaosan]
+  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  {    
+    \sihao[1.5]
+    \par{%
+      \CJKindent
+      \bupt@meta@eabstract
+    }\par
+    \vspace{24bp}
+    \setbox0=\hbox{\textbf{KEY WORDS:\enskip}}
+    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ekeywords
+  }
+}
+```
+
+#### 目录中修改为攻读学位期间取得的“创新成果”目录
+``` latex
+%</cls>
+%    \end{macrocode}
+%
+% 攻读学位期间发表的学术论文目录
+%    \begin{macrocode}
+%<cfg>\def\bupt@label@tableofpublications{攻读学位期间取得的“创新成果”目录}
+%<*cls>
+```
+
+#### 默认采用全局参考文献
+``` latex
+\documentclass[%
+  degree=doctor,%
+  classlevel=open,%
+  mathfont=mathptmx,%
+  dedication=false,%
+  committee=true,%
+  chapbib=false,%
+  finish=print,%
+  driver=xetex]{buptgraduatethesis}
+```
+
+#### 添加答辩小组名单页
+参照如下修改install/buptgraduatethesis.dtx即可
+[添加答辩小组名单页](https://github.com/Jimmy-L4/BUPTGraduateThesis)
+
+
 Version
 ==================
 当前版本v7.2，托管于GitHub，支持Windows、Linux和OSX平台。该版本可以在项目主页直接下载ZIP压缩包获得，也可以通过如下git命令获得：
