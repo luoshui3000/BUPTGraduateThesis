@@ -125,6 +125,9 @@ Update
 参照如下修改install/buptgraduatethesis.dtx即可
 [添加答辩小组名单页](https://github.com/Jimmy-L4/BUPTGraduateThesis)
 
+#### Mathcal fonts in Times New Roman environment
+[新罗马字体使用\mathcal](https://tex.stackexchange.com/questions/473039/mathcal-fonts-in-times-new-roman-environment)
+
 
 Version
 ==================
