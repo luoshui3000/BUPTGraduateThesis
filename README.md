@@ -133,6 +133,7 @@ Update
   }
 }
 ```
+
 #### <摘要><abstract><目录><符号对照表><致谢><发表文章> 增加页眉标题
 ``` latex
 \def\@schapter#1{%
@@ -149,6 +150,9 @@ Update
   \@makeschapterhead{#1}
   \@afterheading}
 ```
+
+
+
 
 
 
