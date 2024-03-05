@@ -334,7 +334,8 @@
 }
 \def\@schapter#1{%
   \cleardoublepage\phantomsection%
-  \thispagestyle{bupt@plain}%
+  %\thispagestyle{bupt@plain}%
+  \thispagestyle{bupt@headings}%  <摘要><abstract><目录><符号对照表><致谢><发表文章> 有页眉标题
   \global\@topnum\z@%
   \@afterindenttrue%
   \ifx\bupt@preschapter\empty
@@ -1091,11 +1092,12 @@
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
   \pagestyle{bupt@plain}
+  %\pagestyle{bupt@headings}
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
-  [\centering\sanhao\bupt@meta@ctitle]
+  %[\centering\sanhao\bupt@meta@ctitle]
   {
     \sihao[1.6]
     \par{
@@ -1103,13 +1105,13 @@
       \song\bupt@meta@cabstract
     }\par
     \vspace{12bp}
-    \setbox0=\hbox{{\hei \bupt@label@ckeywords}}
+    \setbox0=\hbox{{\hei \hspace{2em} \bupt@label@ckeywords}}
     \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
   }
   \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
-  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
   {
     \sihao[1.5]
     \par{%
@@ -1117,7 +1119,7 @@
       \bupt@meta@eabstract
     }\par
     \vspace{24bp}
-    \setbox0=\hbox{\textbf{KEY WORDS:\enskip}}
+    \setbox0=\hbox{\hspace{2em} \textbf{KEY WORDS:\enskip}}
     \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ekeywords
   }
 }

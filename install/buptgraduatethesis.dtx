@@ -1518,7 +1518,8 @@
 }
 \def\@schapter#1{%
   \cleardoublepage\phantomsection%
-  \thispagestyle{bupt@plain}%
+  %\thispagestyle{bupt@plain}%
+  \thispagestyle{bupt@headings}%  <摘要><abstract><目录><符号对照表><致谢><发表文章> 有页眉标题
   \global\@topnum\z@%
   \@afterindenttrue%
   \ifx\bupt@preschapter\empty
@@ -2494,7 +2495,7 @@
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
-  [\centering\sanhao\bupt@meta@ctitle]
+  %[\centering\sanhao\bupt@meta@ctitle]
   {
     \sihao[1.6]
     \par{
@@ -2502,13 +2503,13 @@
       \song\bupt@meta@cabstract
     }\par
     \vspace{12bp}
-    \setbox0=\hbox{{\hei \bupt@label@ckeywords}}
+    \setbox0=\hbox{{\hei \hspace{2em} \bupt@label@ckeywords}}
     \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
   }
   \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
-  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
   {    
     \sihao[1.5]
     \par{%
@@ -2516,7 +2517,7 @@
       \bupt@meta@eabstract
     }\par
     \vspace{24bp}
-    \setbox0=\hbox{\textbf{KEY WORDS:\enskip}}
+    \setbox0=\hbox{\hspace{2em} \textbf{KEY WORDS:\enskip}}
     \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ekeywords
   }
 }
@@ -2548,7 +2549,7 @@
       \setlength{\topsep}{0pt} % 
     }}{\end{list}}
 %</cls>
-%<cfg>\def\bupt@label@listofnotations{符号对照表}
+%<cfg>\def\bupt@label@listofnotations{符号说明}
 %    \end{macrocode}
 %
 % 参考文献表格式
@@ -2656,7 +2657,7 @@
 %</cls>
 %    \end{macrocode}
 %
-% 攻读学位期间发表的学术论文目录
+% 攻读学位期间取得的“创新成果”目录
 %    \begin{macrocode}
 %<cfg>\def\bupt@label@tableofpublications{攻读学位期间取得的“创新成果”目录}
 %<*cls>

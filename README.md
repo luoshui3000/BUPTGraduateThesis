@@ -60,49 +60,12 @@ Update
 }
 ```
 
-#### 目录显示摘要
-``` latex
-%% 生成中英文摘要页
-\newcommand{\bupt@makeabstract}{%
-  \pagestyle{bupt@plain}
-  \pagenumbering{Roman}
-  \bupt@chapter*[\bupt@label@cabstract]%
-  {\bupt@label@cabstract}%
-  [\xiaosan\hei]%
-  [\centering\sanhao\bupt@meta@ctitle]
-  {
-    \sihao[1.6]
-    \par{
-      \CJKindent
-      \song\bupt@meta@cabstract
-    }\par
-    \vspace{12bp}
-    \setbox0=\hbox{{\hei \bupt@label@ckeywords}}
-    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
-  }
-  \bupt@chapter*[\bupt@label@eabstract]%
-  {\bupt@label@eabstract} % no tocline
-  [\xiaosan]
-  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
-  {    
-    \sihao[1.5]
-    \par{%
-      \CJKindent
-      \bupt@meta@eabstract
-    }\par
-    \vspace{24bp}
-    \setbox0=\hbox{\textbf{KEY WORDS:\enskip}}
-    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ekeywords
-  }
-}
-```
-
 #### 目录中修改为攻读学位期间取得的“创新成果”目录
 ``` latex
 %</cls>
 %    \end{macrocode}
 %
-% 攻读学位期间发表的学术论文目录
+% 攻读学位期间取得的“创新成果”目录
 %    \begin{macrocode}
 %<cfg>\def\bupt@label@tableofpublications{攻读学位期间取得的“创新成果”目录}
 %<*cls>
@@ -127,6 +90,66 @@ Update
 
 #### Mathcal fonts in Times New Roman environment
 [新罗马字体使用\mathcal](https://tex.stackexchange.com/questions/473039/mathcal-fonts-in-times-new-roman-environment)
+
+
+#### "符号对照表"改为"符号说明"
+``` latex
+%<cfg>\def\bupt@label@listofnotations{符号说明}
+```
+
+#### 目录显示摘要，摘要页删除文章题目，关键词缩进2字符
+``` latex
+%% 生成中英文摘要页
+\newcommand{\bupt@makeabstract}{%
+  \pagestyle{bupt@plain}
+  \pagenumbering{Roman}
+  \bupt@chapter*[\bupt@label@cabstract]%
+  {\bupt@label@cabstract}%
+  [\xiaosan\hei]%
+  %[\centering\sanhao\bupt@meta@ctitle]
+  {
+    \sihao[1.6]
+    \par{
+      \CJKindent
+      \song\bupt@meta@cabstract
+    }\par
+    \vspace{12bp}
+    \setbox0=\hbox{{\hei \hsapce{2em} \bupt@label@ckeywords}}  %缩进2em
+    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ckeywords
+  }
+  \bupt@chapter*[\bupt@label@eabstract]%
+  {\bupt@label@eabstract} % no tocline
+  [\xiaosan]
+  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  {    
+    \sihao[1.5]
+    \par{%
+      \CJKindent
+      \bupt@meta@eabstract
+    }\par
+    \vspace{24bp}
+    \setbox0=\hbox{\hsapce{2em} \textbf{KEY WORDS:\enskip}}  %缩进2em
+    \noindent\hangindent\wd0\hangafter1\box0\bupt@meta@ekeywords
+  }
+}
+```
+#### <摘要><abstract><目录><符号对照表><致谢><发表文章> 增加页眉标题
+``` latex
+\def\@schapter#1{%
+  \cleardoublepage\phantomsection%
+  %\thispagestyle{bupt@plain}%
+  \thispagestyle{bupt@headings}%  <摘要><abstract><目录><符号对照表><致谢><发表文章> 有页眉标题
+  \global\@topnum\z@%
+  \@afterindenttrue%
+  \ifx\bupt@preschapter\empty
+    \relax
+  \else
+    \bupt@preschapter
+  \fi
+  \@makeschapterhead{#1}
+  \@afterheading}
+```
+
 
 
 Version
