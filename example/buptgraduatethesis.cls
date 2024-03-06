@@ -1009,12 +1009,13 @@
 %% 独创性声明与授权说明
 \newcommand{\bupt@declaration}{%
   \begin{center}
-    \sihao[1.5]\hei\bupt@declaration@title
+    %\sihao[1.5]\hei\bupt@declaration@title
+    \sanhao[1.5]\hei\bupt@declaration@title  %改为三号
   \end{center}
   \par{%
     \parindent\CJKtwospaces\bupt@declaration@body
   }
-  \vskip1.2cm
+  %\vskip1.2cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@authorsigniture\bupt@underline[38mm]\relax
@@ -1024,19 +1025,20 @@
 }
 \newcommand{\bupt@authorization}{%
   \begin{center}
-    \sihao[1.5]\hei\bupt@authorization@title
+    %\sihao[1.5]\hei\bupt@authorization@title
+    \sanhao[1.5]\hei\bupt@authorization@title %改为三号
   \end{center}
   \par{%
     \parindent\CJKtwospaces\bupt@authorization@body
   }
-  \vskip1.2cm
+  %\vskip1.2cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@authorsigniture\bupt@underline[38mm]\relax
     \qquad
     \bupt@label@date\bupt@underline[38mm]\relax
   }%
-  \vskip1cm
+  %\vskip1cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@supervisorsigniture\bupt@underline[38mm]\relax
@@ -1092,7 +1094,6 @@
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
   \pagestyle{bupt@plain}
-  %\pagestyle{bupt@headings}
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%

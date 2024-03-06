@@ -620,10 +620,10 @@
 % 
 % \begin{function}{论文关键词}
 %   \begin{syntax}
-%     |\ckeywords|\marg{中文关键词} |\ekeywords|\marg{英文关键词} |\kwsep|
+%     |\ckeywords|\marg{中文关键词} |\ekeywords|\marg{英文关键词} |；|
 %   \end{syntax}
 % \end{function}
-% 关键词之间使用 |\kwsep| 分隔，根据格式要求，使用空格隔开。
+% 关键词之间使用 |；| 分隔，根据格式要求，使用空格隔开。
 % 
 % \begin{function}{自定义密级}
 %   \begin{syntax}
@@ -2396,12 +2396,13 @@
 %% 独创性声明与授权说明
 \newcommand{\bupt@declaration}{%
   \begin{center}
-    \sihao[1.5]\hei\bupt@declaration@title
+    %\sihao[1.5]\hei\bupt@declaration@title
+    \sanhao[1.5]\hei\bupt@declaration@title  %改为三号
   \end{center}
   \par{%
     \parindent\CJKtwospaces\bupt@declaration@body
   }
-  \vskip1.2cm
+  %\vskip1.2cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@authorsigniture\bupt@underline[38mm]\relax
@@ -2411,19 +2412,20 @@
 }
 \newcommand{\bupt@authorization}{%
   \begin{center}
-    \sihao[1.5]\hei\bupt@authorization@title
+    %\sihao[1.5]\hei\bupt@authorization@title
+    \sanhao[1.5]\hei\bupt@authorization@title %改为三号
   \end{center}
   \par{%
     \parindent\CJKtwospaces\bupt@authorization@body
   }
-  \vskip1.2cm
+  %\vskip1.2cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@authorsigniture\bupt@underline[38mm]\relax
     \qquad
     \bupt@label@date\bupt@underline[38mm]\relax
   }%
-  \vskip1cm
+  %\vskip1cm
   \par{%
     \parindent\CJKtwospaces
     \bupt@label@supervisorsigniture\bupt@underline[38mm]\relax
@@ -4425,8 +4427,8 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
   关键词排列在摘要内容的左下方，具体关键词之间以均匀间隔分开排列，无需其它符号。
 }
 
-%% 中文关键词，关键词之间用 \kwsep 分割
-\ckeywords{\TeX \kwsep \LaTeX \kwsep xeCJK \kwsep 模板 \kwsep 排版 \kwsep 论文}
+%% 中文关键词，关键词之间用 ； 分割
+\ckeywords{\TeX ； \LaTeX ； xeCJK ； 模板 ； 排版 ； 论文}
 
 %% 英文摘要
 \eabstract{%
@@ -4438,9 +4440,9 @@ EXECUTE { show.banner.end }             % 显示完成提示信息
   Key words should be seperated by spaces but not any other symbols.
 }
 
-%% 英文关键词，也用 \kwsep 分割
+%% 英文关键词，也用 ; 分割
 \ekeywords{%
-  \TeX \kwsep \LaTeX \kwsep xeCJK \kwsep template \kwsep typesetting \kwsep thesis}
+  \TeX ; \LaTeX ; xeCJK ; template ; typesetting ; thesis}
 %</metadata>
 % 
 % \subsection{pubs.tex}

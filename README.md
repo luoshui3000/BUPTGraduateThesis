@@ -151,7 +151,49 @@ Update
   \@afterheading}
 ```
 
-
+#### 独创性声明与授权说明的标题字体大小改为三号
+``` latex
+%% 独创性声明与授权说明
+\newcommand{\bupt@declaration}{%
+  \begin{center}
+    %\sihao[1.5]\hei\bupt@declaration@title
+    \sanhao[1.5]\hei\bupt@declaration@title  %改为三号
+  \end{center}
+  \par{%
+    \parindent\CJKtwospaces\bupt@declaration@body
+  }
+  %\vskip1.2cm
+  \par{%
+    \parindent\CJKtwospaces
+    \bupt@label@authorsigniture\bupt@underline[38mm]\relax
+    \qquad
+    \bupt@label@date\bupt@underline[38mm]\relax
+  }%
+}
+\newcommand{\bupt@authorization}{%
+  \begin{center}
+    %\sihao[1.5]\hei\bupt@authorization@title
+    \sanhao[1.5]\hei\bupt@authorization@title %改为三号
+  \end{center}
+  \par{%
+    \parindent\CJKtwospaces\bupt@authorization@body
+  }
+  %\vskip1.2cm
+  \par{%
+    \parindent\CJKtwospaces
+    \bupt@label@authorsigniture\bupt@underline[38mm]\relax
+    \qquad
+    \bupt@label@date\bupt@underline[38mm]\relax
+  }%
+  %\vskip1cm
+  \par{%
+    \parindent\CJKtwospaces
+    \bupt@label@supervisorsigniture\bupt@underline[38mm]\relax
+    \qquad
+    \bupt@label@date\bupt@underline[38mm]\relax
+  }%
+}
+```
 
 
 
