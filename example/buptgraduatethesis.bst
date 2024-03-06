@@ -995,9 +995,20 @@ FUNCTION {format.source.date} {
       warning$
       "\url{" * source * "}" *
     }
-    { "\url{" * source * "}" * punc.comma * date dashify * }
+    {
+      "\url{" * source * "}" *
+    }
+    %{ "\url{" * source * "}" * punc.comma * date dashify * }
     if$
   }
+  if$
+}
+
+FUNCTION {format.date} {
+  ""
+  date empty$
+  { "" }
+  { date dashify * }
   if$
 }
 
@@ -1224,15 +1235,29 @@ FUNCTION {newspaper} {
 % 电子文献类型：数据库DB，计算机程序CP，电子公告EB
 % 载体类型：磁带MT，磁盘DK，光盘CD，网络OL
 % [] author. title[etype/ehowpublished]. source{, date}.{ note.}
+%FUNCTION {electronic} {
+%  generate.bibitem.begin
+%
+%  format.authors "author" output.w.warning
+%  format.title electronic.desinator "title" output.w.appendix.w.warning
+%  format.source.date output.wo.warning
+%  format.note output.wo.warning
+%
+%  generate.bibitem.end
+%
+%}
+
 FUNCTION {electronic} {
   generate.bibitem.begin
 
   format.authors "author" output.w.warning
   format.title electronic.desinator "title" output.w.appendix.w.warning
+  format.date output.wo.warning
   format.source.date output.wo.warning
   format.note output.wo.warning
 
   generate.bibitem.end
+
 }
 
 % 未分类

@@ -195,6 +195,64 @@ Update
 }
 ```
 
+#### 电子文献格式修改
+```
+% 电子文献
+% [序号] 作者. 文献题目[电子文献类型标识/载体类型标识]. 发表或更新日期. 来源或URL.
+% 电子文献类型：数据库DB，计算机程序CP，电子公告EB
+% 载体类型：磁带MT，磁盘DK，光盘CD，网络OL
+% [] author. title[etype/ehowpublished]. date. source.
+FUNCTION {electronic} {
+  generate.bibitem.begin
+
+  format.authors "author" output.w.warning
+  format.title electronic.desinator "title" output.w.appendix.w.warning
+  format.date
+  format.source.date output.wo.warning
+  format.note output.wo.warning
+
+  generate.bibitem.end
+  
+}
+
+% 排版 source, date 域
+% output：栈顶1元素
+FUNCTION {format.source.date} {
+  ""
+  source empty$
+  { "source is empty in " cite$ *
+    warning$
+    date empty$
+    { "date is empty in " cite$ *
+      warning$
+    }
+    { date dashify * }
+    if$
+  }
+  { date empty$
+    { "date is empty in " cite$ *
+      warning$
+      "\url{" * source * "}" *
+    }
+    {
+      "\url{" * source * "}" *
+    }
+    %{ "\url{" * source * "}" * punc.comma * date dashify * }
+    if$
+  }
+  if$
+}
+
+FUNCTION {format.date} {
+  date empty$
+  { "" }
+  { date dashify * "." * }  
+  if$
+}
+
+```
+
+
 
 
 
