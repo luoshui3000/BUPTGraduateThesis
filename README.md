@@ -101,7 +101,7 @@ Update
 ``` latex
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
-  \pagestyle{bupt@plain}
+  \pagestyle{bupt@headings}   %摘要的偶数页显示页眉
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
@@ -244,12 +244,12 @@ FUNCTION {format.source.date} {
 }
 
 FUNCTION {format.date} {
+  ""
   date empty$
   { "" }
-  { date dashify * "." * }  
+  { date dashify * }  
   if$
 }
-
 ```
 
 

@@ -2492,7 +2492,8 @@
 }
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
-  \pagestyle{bupt@plain}
+  %\pagestyle{bupt@plain}
+  \pagestyle{bupt@headings}  %摘要偶数页显示页眉
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%

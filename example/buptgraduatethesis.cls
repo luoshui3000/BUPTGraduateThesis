@@ -1093,7 +1093,8 @@
 }
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
-  \pagestyle{bupt@plain}
+  %\pagestyle{bupt@plain}
+  %\pagestyle{bupt@headings}
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
