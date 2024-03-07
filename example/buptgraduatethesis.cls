@@ -1094,12 +1094,12 @@
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
   %\pagestyle{bupt@plain}
-  %\pagestyle{bupt@headings}
+  \pagestyle{bupt@headings}  %摘要偶数页显示页眉
   \pagenumbering{Roman}
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
-  %[\centering\sanhao\bupt@meta@ctitle]
+  [\centering\sanhao\bupt@meta@ctitle]
   {
     \sihao[1.6]
     \par{
@@ -1113,7 +1113,7 @@
   \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
-  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
   {
     \sihao[1.5]
     \par{%
