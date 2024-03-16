@@ -1142,16 +1142,34 @@ FUNCTION {proceedings} {
 % 会议论文
 % [序号] 作者. 论文题目[A]. // 论文集名[C]. 出版地: 出版者, 年: 页码范围.{ note.}
 % [] author. title[A]. // booktitle[C]. address: publisher, year: pages.{ note.}
+%FUNCTION {inproceedings} {
+%  generate.bibitem.begin
+%
+%  format.authors "author" output.w.warning
+%  format.title "[A]" "title" output.w.appendix.w.warning
+%  booktitle empty$
+%  { "booktitle is empty in " cite$ *
+%    warning$
+%  }
+%  { punc.parallel format.booktitle * "[C]" * output.wo.warning }
+%  if$
+%
+%  format.address.publisher.year.pages output.wo.warning
+%  format.note output.wo.warning
+%
+%  generate.bibitem.end
+%}
+
 FUNCTION {inproceedings} {
   generate.bibitem.begin
 
   format.authors "author" output.w.warning
-  format.title "[A]" "title" output.w.appendix.w.warning
+  format.title "[C]" "title" output.w.appendix.w.warning
   booktitle empty$
   { "booktitle is empty in " cite$ *
     warning$
   }
-  { punc.parallel format.booktitle * "[C]" * output.wo.warning }
+  { "In " format.booktitle * output.wo.warning }
   if$
 
   format.address.publisher.year.pages output.wo.warning

@@ -2,6 +2,10 @@ Update
 ==================
 根据[北京邮电大学研究生学位论文写作与制作规范-20240102版本](https://grs.bupt.edu.cn/info/1035/3071.htm)对install/buptgraduatethesis.dtx进行了如下修改
 
+####
+texlive2022 + texstudio
+如果用新版texlive，由于相关package的版本问题，可能有兼容问题
+
 #### 新增文件说明
 - example 里的是根据新版要求修改install/buptgraduatethesis.dtx文件，并编译后生成的样例文件
 - fonts 里的是所需的字体库
@@ -196,7 +200,7 @@ Update
 ```
 
 #### 电子文献格式修改
-```
+``` latex
 % 电子文献
 % [序号] 作者. 文献题目[电子文献类型标识/载体类型标识]. 发表或更新日期. 来源或URL.
 % 电子文献类型：数据库DB，计算机程序CP，电子公告EB
@@ -252,7 +256,26 @@ FUNCTION {format.date} {
 }
 ```
 
+#### 会议论文格式修改
+``` latex
+FUNCTION {inproceedings} {
+  generate.bibitem.begin
 
+  format.authors "author" output.w.warning
+  format.title "[C]" "title" output.w.appendix.w.warning
+  booktitle empty$
+  { "booktitle is empty in " cite$ *
+    warning$
+  }
+  { "In " format.booktitle * output.wo.warning }
+  if$
+
+  format.address.publisher.year.pages output.wo.warning
+  format.note output.wo.warning
+
+  generate.bibitem.end
+}
+```
 
 
 
