@@ -2827,7 +2827,8 @@
 \DeclareCaptionLabelFormat{bupt}{%
   {\wuhao[1.5]\kai #1~\rmfamily #2}
 }
-\DeclareCaptionLabelSeparator{bupt}{\hspace{1em}}
+%\DeclareCaptionLabelSeparator{bupt}{\hspace{1em}} %原先的设置
+\DeclareCaptionLabelSeparator{bupt}{\hspace{0.5em}}
 \DeclareCaptionFont{bupt}{\wuhao[1.5]\kai}
 \captionsetup{%
   labelformat=bupt,%
@@ -2842,12 +2843,15 @@
 \captionsetup[figure]{%
   position=bottom,%
   belowskip={12bp-\intextsep},%
-  aboveskip=-2bp%
+  %aboveskip=-2bp% %原先的设置
+  aboveskip=2bp%
 }
 \captionsetup[subfloat]{%
   font=bupt,%
-  captionskip=6bp,%
-  nearskip=6bp,%
+  %captionskip=6bp,%原先的设置
+  captionskip=2bp,%修改后的设置
+  %nearskip=6bp,%原先的设置
+  nearskip=2bp,%修改后的设置
   farskip=0bp,%
   topadjust=0bp%
 }

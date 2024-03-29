@@ -1312,7 +1312,7 @@
 \DeclareCaptionLabelFormat{bupt}{%
   {\wuhao[1.5]\kai #1~\rmfamily #2}
 }
-\DeclareCaptionLabelSeparator{bupt}{\hspace{1em}}
+\DeclareCaptionLabelSeparator{bupt}{\hspace{0.5em}}
 \DeclareCaptionFont{bupt}{\wuhao[1.5]\kai}
 \captionsetup{%
   labelformat=bupt,%
@@ -1327,7 +1327,8 @@
 \captionsetup[figure]{%
   position=bottom,%
   belowskip={12bp-\intextsep},%
-  aboveskip=-2bp%
+  %aboveskip=-2bp%
+  aboveskip=2bp%
 }
 \captionsetup[subfloat]{%
   font=bupt,%

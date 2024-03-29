@@ -277,6 +277,35 @@ FUNCTION {inproceedings} {
 }
 ```
 
+#### 修改图片标题的上方间距
+``` latex
+\captionsetup[figure]{%
+  position=bottom,%
+  belowskip={12bp-\intextsep},%
+  %aboveskip=-2bp%   原先的设置
+  aboveskip=2bp%     修改后的设置
+}
+```
+
+#### 修改子图标题上下方间距
+``` latex
+\captionsetup[subfloat]{%
+  font=bupt,%
+  %captionskip=6bp,%原先的设置
+  captionskip=2bp,%修改后的设置
+  %nearskip=6bp,%原先的设置
+  nearskip=2bp,%修改后的设置
+  farskip=0bp,%
+  topadjust=0bp%
+}
+```
+
+#### 修改图片编号和标题的间隔
+``` latex
+%\DeclareCaptionLabelSeparator{bupt}{\hspace{1em}}  %原先的设置
+\DeclareCaptionLabelSeparator{bupt}{\hspace{0.5em}} %修改后的设置
+```
+
 
 
 Version
