@@ -101,7 +101,7 @@ texlive2022 + texstudio
 %<cfg>\def\bupt@label@listofnotations{符号说明}
 ```
 
-#### 目录显示摘要，关键词缩进2字符
+#### 目录显示摘要，关键词缩进2字符，不显示摘要题目
 ``` latex
 %% 生成中英文摘要页
 \newcommand{\bupt@makeabstract}{%
@@ -110,7 +110,7 @@ texlive2022 + texstudio
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
-  [\centering\sanhao\bupt@meta@ctitle]
+  %[\centering\sanhao\bupt@meta@ctitle] % 此处控制中文摘要标题
   {
     \sihao[1.6]
     \par{
@@ -124,7 +124,7 @@ texlive2022 + texstudio
   \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
-  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题
   {    
     \sihao[1.5]
     \par{%

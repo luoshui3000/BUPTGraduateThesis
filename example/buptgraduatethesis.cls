@@ -1101,7 +1101,7 @@
   \bupt@chapter*[\bupt@label@cabstract]%
   {\bupt@label@cabstract}%
   [\xiaosan\hei]%
-  [\centering\sanhao\bupt@meta@ctitle]
+  %[\centering\sanhao\bupt@meta@ctitle] % 此处控制中文摘要标题
   {
     \sihao[1.6]
     \par{
@@ -1115,7 +1115,7 @@
   \bupt@chapter*[\bupt@label@eabstract]%
   {\bupt@label@eabstract} % no tocline
   [\xiaosan]
-  [\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题的字体
+  %[\centering\sanhao\textbf{\MakeUppercase\bupt@meta@etitle}] % 此处控制英文摘要标题
   {
     \sihao[1.5]
     \par{%
@@ -1327,13 +1327,15 @@
 \captionsetup[figure]{%
   position=bottom,%
   belowskip={12bp-\intextsep},%
-  %aboveskip=-2bp%
+  %aboveskip=-2bp% %原先的设置
   aboveskip=2bp%
 }
 \captionsetup[subfloat]{%
   font=bupt,%
-  captionskip=6bp,%
-  nearskip=6bp,%
+  %captionskip=6bp,%原先的设置
+  captionskip=2bp,%修改后的设置
+  %nearskip=6bp,%原先的设置
+  nearskip=2bp,%修改后的设置
   farskip=0bp,%
   topadjust=0bp%
 }
