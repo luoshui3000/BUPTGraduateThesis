@@ -321,7 +321,7 @@
   \@makechapterhead{#2}
 }
 \def\@makechapterhead#1{%
-  \vspace*{20bp}%
+  %\vspace*{20bp}   %原本的版本有本条命令，将其注释掉
   {%
     \parindent \z@ \centering
     \bfseries\csname bupt@title@font\endcsname\sanhao[1] % 此处控制正文的章标题以及附录标题
@@ -329,7 +329,8 @@
     \@chapapp\hskip1em
     \fi
     #1\par\nobreak
-    \vskip 24bp
+    %\vskip 24bp  %原本的版本
+    \vskip 30bp
   }
 }
 \def\@schapter#1{%
@@ -528,28 +529,33 @@
 \AtBeginDvi{\special{!%
     \@percentchar\@percentchar BeginPaperSize: a4
     ^^Ja4^^J\@percentchar\@percentchar EndPaperSize}}
-\setlength{\hoffset}{-1in}
-\addtolength{\hoffset}{5mm}           % 装订线: 1in + \hoffset = 5mm
-\setlength{\voffset}{-1in}            %
+\setlength{\hoffset}{-1in}            %原先的版本
+\addtolength{\hoffset}{0mm}           % 装订线: 1in + \hoffset = 5mm
+\setlength{\voffset}{-1in}            %原先的版本
 \setlength\marginparwidth{0mm}        %
 \setlength\marginparsep{0mm}          %
 \setlength{\textwidth}{\paperwidth}   %
-\addtolength{\textwidth}{-55mm}       % 版芯宽度: 155mm = 210mm - 55mm
-\setlength{\oddsidemargin}{22.5mm}    % 内侧页边距: 奇数页左侧页边距
-\setlength{\evensidemargin}{22.5mm}   % 外侧页边距: 偶数页左侧页边距
+\addtolength{\textwidth}{-63.4mm}     % 版芯宽度: 146.6mm = 210mm - 31.7mm * 2
+\setlength{\oddsidemargin}{31.7mm}    % 内侧页边距: 奇数页左侧页边距
+\setlength{\evensidemargin}{31.7mm}   % 外侧页边距: 偶数页左侧页边距
 \setlength{\textheight}{\paperheight} %
-\setlength{\headheight}{20pt}         % 页眉高度: 20pt
+\setlength{\headheight}{20pt}         % 页眉高度: 20pt  原先的版本
 \setlength{\topskip}{0pt}             %
 \setlength{\skip\footins}{15pt}       %
-\setlength{\topmargin}{25mm}          % 上边距: 25 mm (原为30mm)
-\setlength{\footskip}{15mm}           %
+\setlength{\topmargin}{15mm}          % 上边距:
+\setlength{\footskip}{9mm}           %
 \setlength{\headsep}{5mm}             %
-\addtolength{\textheight}{-77mm}      % 文字高度:  297mm (纸张高度)
                                       %          - 25mm (上边距)
                                       %          -  7mm (\headerheight, 20pt)
                                       %          -  5mm (\headsep)
                                       %          - 15mm (\footskip)
                                       %          - 25mm (下边距)
+\addtolength{\textheight}{-55mm}      % 文字高度:  297mm (纸张高度)
+                                      %          - 15mm (上边距 \topmargin)
+                                      %          -  7mm (\headerheight, 20pt)
+                                      %          -  5mm (\headsep)
+                                      %          - 10mm (\footskip)
+                                      %          - 15mm (下边距)
 \renewcommand\frontmatter{%
   \cleardoublepage%
   \@mainmatterfalse%
