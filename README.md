@@ -268,7 +268,7 @@ FUNCTION {electronic} {
 
   format.authors "author" output.w.warning
   format.title electronic.desinator "title" output.w.appendix.w.warning
-  format.date
+  format.date format.citedate * output.wo.warning  %新增
   format.source.date output.wo.warning
   format.note output.wo.warning
 
@@ -304,12 +304,67 @@ FUNCTION {format.source.date} {
   if$
 }
 
-FUNCTION {format.date} {
-  ""
+FUNCTION {format.date} { %新增
+  "("
   date empty$
   { "" }
   { date dashify * }  
   if$
+  ")" *
+}
+
+FUNCTION {format.citedate} { %新增
+  "["
+  citedate empty$
+  { "" }
+  { citedate dashify * }  
+  if$
+  "]" *
+}
+
+%%%%%%%%%%%%%%%%
+% 域定义
+%%%%%%%%%%%%%%%%
+ENTRY {
+  address         % 出版地/专利国别
+  author          % 作者/申请者/责任者
+  booktitle       % 专著名/论文集名/报纸名
+  date            % 日期
+  citedate        % 引用日期   % 新增
+  edition         % 版本
+  editor          % 编者
+  ehowpublished   % 载体类型标识
+  etype           % 电子文献类型标识
+  language        % 语言
+  multiseriesmsg  % 非连续页或分期期刊的分期信息
+  note            % 附加说明
+  number          % 期号
+  pages           % 参考页码/页码范围
+  publisher       % 出版者
+  series          % 专利号/标准号
+  title           % 论文题目/报告题目/专利题目/标准题目/文章题目/文献题目
+  translator      % 译者
+  volume          % 卷号
+  year            % 年
+  source          % 来源或URL
+  CTLformation_name       % 用户控制接口：控制姓名的格式
+  CTLmaxnum_authors       % 用户控制接口：控制最多显示作者数
+  CTLname_author_eng      % 用户控制接口：控制学位论文作者的英文姓名
+  CTLname_author_chs      % 用户控制接口：控制学位论文作者的中文姓名
+  CTLswitch_peerreview    % 用户控制接口：控制是否盲审格式
+  CTLswitch_chs_punc      % 用户控制接口：控制是否使用中文句点
+}
+
+@ELECTRONIC{CITATION_ELECTRONIC,
+  author = "{百度百科}",
+  title = "香农公式",
+  etype = "EB",
+  ehowpublished = "OL",
+  source = "http://baike.baidu.com/view/747964.htm",
+  date = "2013-10-28",
+  citedate="2024-01-10",   %新增
+  language = "chs",
+  note = ""
 }
 ```
 

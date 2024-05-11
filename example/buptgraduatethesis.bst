@@ -85,6 +85,7 @@ ENTRY {
   author          % 作者/申请者/责任者
   booktitle       % 专著名/论文集名/报纸名
   date            % 日期
+  citedate        % 引用日期   新增
   edition         % 版本
   editor          % 编者
   ehowpublished   % 载体类型标识
@@ -1004,12 +1005,22 @@ FUNCTION {format.source.date} {
   if$
 }
 
-FUNCTION {format.date} {
-  ""
+FUNCTION {format.date} { %新增
+  "("
   date empty$
   { "" }
   { date dashify * }
   if$
+  ")" *
+}
+
+FUNCTION {format.citedate} { %新增
+  "["
+  citedate empty$
+  { "" }
+  { citedate dashify * }
+  if$
+  "]" *
 }
 
 % 为 electronic 分配类型和载体
@@ -1270,7 +1281,7 @@ FUNCTION {electronic} {
 
   format.authors "author" output.w.warning
   format.title electronic.desinator "title" output.w.appendix.w.warning
-  format.date output.wo.warning
+  format.date format.citedate * output.wo.warning
   format.source.date output.wo.warning
   format.note output.wo.warning
 
